@@ -1,0 +1,21 @@
+.primer {
+  position: relative;
+  color: aliceblue;
+  width: fit-content;
+}
+
+.btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.redIcon {
+  color: #ff1744;
+}
+
+.card {
+  &__text {
+    color: #8f92b5;
+  }
+}

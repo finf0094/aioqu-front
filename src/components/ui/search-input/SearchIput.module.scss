@@ -1,0 +1,14 @@
+.searchBox {
+  position: relative;
+  display: inline-flex;
+  width: 500px;
+}
+.searchInput {
+  width: 100%;
+}
+.searchButton {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}

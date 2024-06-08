@@ -1,0 +1,45 @@
+.primer {
+  position: relative;
+  color: aliceblue;
+  width: fit-content;
+}
+
+.btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.redIcon {
+  color: #ff1744;
+}
+
+.card {
+  &__text {
+    margin-top: 20px;
+  }
+}
+
+.title-h2 {
+  padding-left: 24px;
+  color: #151422;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+
+  &__left {
+    flex-grow: 1;
+  }
+  &__right {
+  }
+
+  &__item {
+    & + & {
+      margin-top: 30px;
+    }
+  }
+}

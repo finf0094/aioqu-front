@@ -1,0 +1,13 @@
+.chips {
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &__icon {
+  }
+  &__text {
+    color: #8f92b5;
+  }
+}

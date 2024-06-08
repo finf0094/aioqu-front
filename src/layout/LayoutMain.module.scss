@@ -1,0 +1,93 @@
+.layoutMain {
+  display: flex;
+  height: 100vh;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  max-width: 145px;
+  min-width: 145px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  &__logo {
+    display: flex;
+  }
+
+  &__toggle {
+    display: flex;
+    padding: 0 86px;
+
+    &__active {
+      padding: 0;
+    }
+  }
+
+  &__nav {
+    padding: 0 55px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__item {
+      padding: 18px 30px;
+
+      display: flex;
+      align-items: center;
+      gap: 29px;
+
+      cursor: pointer;
+
+      svg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 30px;
+        height: 30px;
+      }
+
+      span {
+        font-size: 20px;
+        color: #8f92b5;
+      }
+
+      &__active {
+        border-radius: 20px;
+        background-color: #f5f5f7;
+
+        span {
+          color: #151422;
+        }
+      }
+    }
+  }
+}
+
+.aside.open {
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.content {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.isAlignCenter {
+  align-items: center;
+}
+
+.isJustifyCenter {
+  justify-content: center;
+}
