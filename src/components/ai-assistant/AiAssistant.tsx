@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import {ChangeEvent, useState} from "react";
 import axios from "axios";
-
-import { Box, IconButton, Typography, TextField, Button, CircularProgress } from "@mui/material";
+import {Box, IconButton, Typography, TextField, Button, CircularProgress} from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SendIcon from "@mui/icons-material/Send";
 
-const AiAssistant = ({ isAsideOpen }) => {
-    const [messages, setMessages] = useState([{ role: "system", content: "Вы начали разговор с ассистентом." }]);
+interface AiAssistantProps {
+    isAsideOpen: boolean;
+}
+
+interface Message {
+    role: 'system' | 'user' | 'assistant';
+    content: string;
+}
+
+const AiAssistant = ({isAsideOpen}: AiAssistantProps) => {
+    const [messages, setMessages] = useState<Message[]>([{
+        role: "system",
+        content: "Вы начали разговор с ассистентом."
+    }]);
     const [input, setInput] = useState('');
     const [showButtons, setShowButtons] = useState(true);
     const [loading, setLoading] = useState(false);
 
     const handleSendMessage = async () => {
         if (input.trim()) {
-            const newMessages = [...messages, { role: 'user', content: input }];
+            const newMessages: Message[] = [...messages, {role: 'user', content: input}];
             setMessages(newMessages);
             setInput('');
             setShowButtons(false);
@@ -21,7 +32,7 @@ const AiAssistant = ({ isAsideOpen }) => {
 
             try {
                 const aiResponse = await getAIResponse(newMessages);
-                setMessages([...newMessages, { role: 'assistant', content: aiResponse }]);
+                setMessages([...newMessages, {role: 'assistant', content: aiResponse}]);
             } catch (error) {
                 console.error('Error fetching AI response:', error);
             } finally {
@@ -30,13 +41,13 @@ const AiAssistant = ({ isAsideOpen }) => {
         }
     };
 
-    const handleKeyPress = (event) => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             handleSendMessage();
         }
     };
 
-    const getAIResponse = async (messages) => {
+    const getAIResponse = async (messages: Message[]): Promise<string> => {
         try {
             const response = await axios.post(
                 'https://api.openai.com/v1/chat/completions',
@@ -61,29 +72,30 @@ const AiAssistant = ({ isAsideOpen }) => {
     };
 
     return (
-        <Box sx={{ p: 2, color: 'white', width: 'calc(100% - 40px)', position: 'absolute', bottom: 20, left: 20 }}>
+        <Box sx={{p: 2, color: 'white', width: 'calc(100% - 40px)', position: 'absolute', bottom: 20, left: 20}}>
             {isAsideOpen ? (
-                <Box sx={{ backgroundColor: '#1A1A1A', borderRadius: 4, p: 2 }}>
-                    <Typography fontSize="32" fontWeight="bold" sx={{ mb: 2, textAlign: 'center' }}>AI Assistant</Typography>
-                    <Typography fontSize="20" fontWeight="medium" sx={{ mb: 2 }}>How can I help you?</Typography>
+                <Box sx={{backgroundColor: '#1A1A1A', borderRadius: 4, p: 2}}>
+                    <Typography fontSize="32" fontWeight="bold" sx={{mb: 2, textAlign: 'center'}}>AI
+                        Assistant</Typography>
+                    <Typography fontSize="20" fontWeight="medium" sx={{mb: 2}}>How can I help you?</Typography>
 
                     {showButtons && (
-                        <Box sx={{ mb: 2 }}>
-                            <Button variant="outlined" color="primary" sx={{ mb: 1, mr: 1 }}>Where...</Button>
-                            <Button variant="outlined" color="primary" sx={{ mb: 1, mr: 1 }}>When...</Button>
-                            <Button variant="outlined" color="primary" sx={{ mb: 1 }}>How...</Button>
+                        <Box sx={{mb: 2}}>
+                            <Button variant="outlined" color="primary" sx={{mb: 1, mr: 1}}>Where...</Button>
+                            <Button variant="outlined" color="primary" sx={{mb: 1, mr: 1}}>When...</Button>
+                            <Button variant="outlined" color="primary" sx={{mb: 1}}>How...</Button>
                         </Box>
                     )}
 
-                    <Box sx={{ maxHeight: 200, overflowY: 'auto', mb: 2 }}>
+                    <Box sx={{maxHeight: 200, overflowY: 'auto', mb: 2}}>
                         {messages.map((message, index) => (
-                            <Typography key={index} sx={{ color: message.role === 'user' ? 'lightblue' : 'white' }}>
+                            <Typography key={index} sx={{color: message.role === 'user' ? 'lightblue' : 'white'}}>
                                 {message.content}
                             </Typography>
                         ))}
                     </Box>
 
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
                         <TextField
                             variant="outlined"
                             size="small"
@@ -121,7 +133,7 @@ const AiAssistant = ({ isAsideOpen }) => {
                             }}
                         />
                         <IconButton color="primary" onClick={handleSendMessage}>
-                            {loading ? <CircularProgress size={24} /> : <SendIcon />}
+                            {loading ? <CircularProgress size={24}/> : <SendIcon/>}
                         </IconButton>
                     </Box>
                 </Box>
@@ -130,13 +142,13 @@ const AiAssistant = ({ isAsideOpen }) => {
                     color="primary"
                     sx={{
                         backgroundColor: 'primary.main',
-                        '&:hover': { backgroundColor: 'primary.dark' },
+                        '&:hover': {backgroundColor: 'primary.dark'},
                         color: 'white',
                         width: 56,
                         height: 56,
                     }}
                 >
-                    <ChatBubbleOutlineIcon />
+                    <ChatBubbleOutlineIcon/>
                 </IconButton>
             )}
         </Box>
