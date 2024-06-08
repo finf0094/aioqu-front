@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {Box, IconButton, Typography, TextField, Button, CircularProgress} from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
