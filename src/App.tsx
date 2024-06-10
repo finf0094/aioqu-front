@@ -16,8 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={RoutePath.HOME} element={<LayoutMain />}>
-          <Route index element={<>Главная</>} />
+        <Route path={RoutePath.Overview} element={<LayoutMain />}>
           <Route path={RoutePath.Overview} element={<OverviewView />} />
           <Route path={RoutePath.MyCourses} element={<MyCoursesView />} />
           <Route

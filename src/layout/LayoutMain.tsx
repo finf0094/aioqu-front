@@ -37,7 +37,7 @@ const LayoutMain = () => {
         if (matchedPath) {
             setActiveView(matchedPath);
         } else {
-            setActiveView(RoutePath.HOME);
+            setActiveView(RoutePath.Overview);
         }
     }, [location.pathname]);
 
