@@ -30,11 +30,11 @@ const mentorMock = {
   specialties: [
     {
       id: 1,
-      title: "Profile1",
+      title: "Math",
     },
     {
       id: 2,
-      title: "Profile2",
+      title: "Programming",
     },
   ],
   first_name: "DAUREN",
